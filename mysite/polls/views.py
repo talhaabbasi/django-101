@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.db.models import F
 from django.views.generic import ListView, DetailView
 
-from .models import Question
+from .models import Question, Choice
 
 
 class IndexView(ListView):
@@ -13,10 +13,12 @@ class IndexView(ListView):
     
     def get_queryset(self):
         return Question.objects.order_by('-pub_date')[:5]
-    
+
+
 class DetailView(DetailView):
     model = Question
     template_name = 'polls/detail.html'
+
 
 class ResultsView(DetailView):
     model = Question
